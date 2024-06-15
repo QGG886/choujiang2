@@ -1,5 +1,5 @@
 import plankton from '@lixinyang123/plankton'
-import fs from  'fs'
+import fs from 'fs'
 
 let app = plankton()
 
@@ -7,20 +7,30 @@ let app = plankton()
 app.useStaticFile()
 
 app.map('/', (req, res) => {
-    res.redirect('/index.html')
+    res.redirect('/submit.html')
+
+})
+
+app.map('/wjyssb', (req, res) => {
+    res.redirect('/wjyssb.html')
 })
 
 app.map("/submit", async (req, res) => {
+    if (req.cookie.submited) {
+        res.redirect('/end.html')
+    }
+
     let body = await req.body()
     let data = JSON.parse(fs.readFileSync('./src/wwwroot/data/data.json', 'utf-8'))
     data.push(body)
     fs.writeFileSync('./src/wwwroot/data/data.json', JSON.stringify(data))
+    res.cookie('submited', 'true')
     res.json({
         msg: 'success'
     })
 })
 
-app.map('/getAllUser',(req,res)=>{
+app.map('/getAllUser', (req, res) => {
     let data = JSON.parse(fs.readFileSync('./src/wwwroot/data/data.json', 'utf-8'))
     res.json(data)
 })

@@ -195,7 +195,7 @@
     <% _.each(lottery_datas, function (item) { %>
     <div class="clearfix lottery-list" data-id="" data-namezh="<%= item.namezh %>" data-nameen="<%= item.nameen %>">
         <div class="f-l turqoise lottery-avatar">
-            <img src="./img/avatar/<%= item.nameen %>.jpg" alt="<%= item.namezh %>">
+            <img src="./img/avatar/avatar15.jpg" alt="<%= item.namezh %>">
         </div>
         <div class="f-l lottery-content">
             <em class="beauty border-01"></em>
@@ -231,6 +231,7 @@
     <a id="music-control" class="animated infinite bounce" href="javascript:;" data-open="1"></a>
     <!--清除数据开关-->
     <a id="clear-control" href="javascript:;" data-open="1"></a>
+    <a id="refresh-control" href="javascript:;" data-open="1"></a>
 
     <audio id="music" loop="loop" preload="auto" src="shiji.mp3">
         你的浏览器不支持audio标签
@@ -260,20 +261,34 @@
 
         fetch('/getAllUser').then(async res => {
             // 初始化数据
-            if (!localStorage.getItem('lottery_initial')) {
-                var data_str = await res.text();
-
-                // var res = [];
-                // datas.forEach(function (val, index) {
-                //     if (name != val.nameen) {
-                //         res.push(val);
-                //     }
-                // });
-
-                localStorage.setItem('lottery_initial', data_str);
-                console.log('fetch data')
+            var datas = await res.json();
+            var realUsers = []
+            let award_his = []
+            if (localStorage.getItem('award_1')) {
+                let award_1 = JSON.parse(localStorage.getItem('award_1'))
+                award_his = award_his.concat(award_1)
+            }
+            if (localStorage.getItem('award_2')) {
+                let award_2 = JSON.parse(localStorage.getItem('award_2'))
+                award_his = award_his.concat(award_2)
+            }
+            if (localStorage.getItem('award_3')) {
+                let award_3 = JSON.parse(localStorage.getItem('award_3'))
+                award_his = award_his.concat(award_3)
+            }
+            if (localStorage.getItem('award_4')) {
+                let award_4 = JSON.parse(localStorage.getItem('award_4'))
+                award_his = award_his.concat(award_4)
             }
 
+            datas.forEach((user) => {
+                // 从award_his中找到user
+                if (award_his.find(i => i.nameen == user.nameen)) {
+                    return
+                }
+                realUsers.push(user)
+            });
+            localStorage.setItem('lottery_initial', JSON.stringify(realUsers));
             //除chrome外，其他支持需要在服务器上运行才支持
             if (!window.localStorage) {
                 alert('不支持localstorage，抽奖无法启动！');
@@ -317,16 +332,12 @@
             // ---------------- 加载、渲染 滚动抽奖信息数据 ------------
             // 如果得不到数据，则从初始化数据中获取
             if (!local_handle.get("lottery_datas")) {
-                console.log('from initial')
                 var lottery_storage = window.localStorage.getItem('lottery_initial');
             } else {
-                console.log('from data')
                 var lottery_storage = window.localStorage.getItem('lottery_datas');
             }
 
             lottery_datas = JSON.parse(lottery_storage);
-            console.log('=================')
-            console.log(lottery_datas)
             $('#lottery-wrap').html(_.template($('#lotterycon-tpl').html(), lottery_datas));
 
             // ---------------- 加载、渲染 滚动抽奖信息数据 ------------
@@ -726,6 +737,15 @@
                         window.location.reload();
                     }
                 });
+
+                $('#refresh-control').click(function () {
+                    var sure = confirm('警告：刷新数据？！');
+                    if (sure) {
+                        window.localStorage.removeItem('lottery_datas')
+                        window.location.reload();
+                    }
+                });
+
 
                 // 控制：显示/隐藏 抽奖名单和抽奖奖品显示
                 if (local_handle.get("mingdan_toggle") == 1) {
