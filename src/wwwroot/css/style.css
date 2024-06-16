@@ -231,7 +231,8 @@ aside .switch {
 
 .lotterty-infogo {
     margin: 3rem auto 0 auto;
-    text-align: center
+    text-align: center;
+    padding:40px;
 }
 .lotterty-infogo h3 {
     display: inline-block;
@@ -843,7 +844,7 @@ footer {
     right: 0.5%;
     width: 3rem;
     height: 3rem;
-    background: url("../img/avatar/avatar1.jpg") 0 0 no-repeat;
+    background: url("../img/huatu/R-C.jpg") 0 0 no-repeat;
     background-size: contain;
 }
 

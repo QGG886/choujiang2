@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>寒山2017 - 新年抽奖</title>
+    <title>浙江华图618豪礼亨享狂欢节</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/animate.css">
 </head>
@@ -43,16 +43,16 @@
     <!--右侧奖品名单展示-->
     <aside class="aside-right">
         <div class="aside-main" id="liwu-con">
-            <div class="btn btn-red-outline" data-toggle="modal" id="liwu-title">新年礼物</div>
+            <div class="btn btn-red-outline" data-toggle="modal" id="liwu-title">618亨享好课节 重磅奖品</div>
             <div class="award-main">
                 <div class="award-con">
                     <h3 class="award-title">一等奖</h3>
                     <ul class="win">
                         <li class="clearfix win-li">
                             <div class="f-l avatar">
-                                <img width="34" src="./img/gift/canon.jpg" />
+                                <img width="34" src="./img/huatu/one.png" />
                             </div>
-                            <div class="f-l name">佳能微单</div>
+                            <div class="f-l name">iPhone15 手机</div>
                         </li>
                     </ul>
                 </div>
@@ -61,21 +61,9 @@
                     <ul class="win">
                         <li class="clearfix win-li">
                             <div class="f-l avatar">
-                                <img width="34" src="./img/gift/kindle.jpg" />
+                                <img width="34" src="./img/huatu/two.png" />
                             </div>
-                            <div class="f-l name">Kindle 阅读器</div>
-                        </li>
-                        <li class="clearfix win-li">
-                            <div class="f-l avatar">
-                                <img width="34" src="./img/gift/kule.jpg" />
-                            </div>
-                            <div class="f-l name">酷乐视投影机</div>
-                        </li>
-                        <li class="clearfix win-li">
-                            <div class="f-l avatar">
-                                <img width="34" src="./img/gift/beats.jpg" />
-                            </div>
-                            <div class="f-l name">Beats动力耳机</div>
+                            <div class="f-l name">AirPods 耳机</div>
                         </li>
                     </ul>
                 </div>
@@ -84,25 +72,13 @@
                     <ul class="win">
                         <li class="clearfix win-li">
                             <div class="f-l avatar">
-                                <img width="34" src="./img/gift/jingdong.jpg" />
+                                <img width="34" src="./img/huatu/three.png" />
                             </div>
-                            <div class="f-l name">京东购物E卡</div>
-                        </li>
-                        <li class="clearfix win-li">
-                            <div class="f-l avatar">
-                                <img width="34" src="./img/gift/yashua.jpg" />
-                            </div>
-                            <div class="f-l name">飞利浦电动牙刷</div>
-                        </li>
-                        <li class="clearfix win-li">
-                            <div class="f-l avatar">
-                                <img width="34" src="./img/gift/anmo.jpg" />
-                            </div>
-                            <div class="f-l name">颈椎按摩器</div>
+                            <div class="f-l name">拍立得</div>
                         </li>
                     </ul>
                 </div>
-                <div class="award-con">
+                <!-- <div class="award-con">
                     <h3 class="award-title">纪念奖</h3>
                     <ul class="win">
                         <li class="clearfix win-li">
@@ -130,7 +106,7 @@
                             <div class="f-l name">乐扣马克保温杯</div>
                         </li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
         <img src="./img/lantern.png" alt="" width="85" id="liwu" class="switch">
@@ -156,7 +132,7 @@
 
     <div class="main">
         <div class="lotterty-infogo">
-            <img src="img/logo.png">
+            <p style="font-size: 36px; color: red; font-weight: 900;">浙江华图618豪礼亨享狂欢节</p>
         </div>
         <div id="lottery-main" class="lottery-main">
             <div class="wrap-border-main">
@@ -177,7 +153,7 @@
                 <div class="cirle-btn award" id="award-2" data-award="2">二</div>
                 <div class="btn btn-red-outline lottery-btn" id="lottery-btn" data-award="">开始抽奖</div>
                 <div class="cirle-btn award" id="award-3" data-award="3">三</div>
-                <div class="cirle-btn award" id="award-4" data-award="4">纪</div>
+                <!-- <div class="cirle-btn award" id="award-4" data-award="4">纪</div> -->
             </div>
         </div>
     </div>
@@ -195,7 +171,7 @@
     <% _.each(lottery_datas, function (item) { %>
     <div class="clearfix lottery-list" data-id="" data-namezh="<%= item.namezh %>" data-nameen="<%= item.nameen %>">
         <div class="f-l turqoise lottery-avatar">
-            <img src="./img/avatar/avatar15.jpg" alt="<%= item.namezh %>">
+            <img src="./img/huatu/htlogo2.jpg" alt="<%= item.namezh %>">
         </div>
         <div class="f-l lottery-content">
             <em class="beauty border-01"></em>
@@ -204,11 +180,8 @@
             <em class="beauty border-04"></em>
             <div class="border bor-top"></div>
             <div class="border bor-bottom"></div>
-            <h3 class="content-title"> <span class="lottery-name"><%= item.namezh %></span> &nbsp;&nbsp;<span class="company">[ 寒山科技 ]</span></h3>
-            <div class="content-detail">
-                <b>新年愿景及祝福：</b>
-                <span><%= item.wish %></span>
-            </div>
+            <h3 class="content-title"> <span class="lottery-name"><%= item.namezh %></span> </h3>
+            <h3 class="content-title"> <span class="lottery-name"><%= maskPhoneNumber(item.nameen) %></span></h3>
         </div>
     </div>
     <% }); %>
@@ -219,7 +192,7 @@
     <script type="text/template" id="awardcon-tpl">
     <li class="clearfix win-li">
         <div class="f-l avatar">
-            <img width="34" src="./img/avatar/{nameen}.jpg"/>
+            <img width="34" src="./img/huatu/htlogo.jpg"/>
         </div>
         <div class="f-l name">{namezh}</div>
         <a class="f-l delete" href="javascript:;">&times;</a>
@@ -245,6 +218,23 @@
     <!--<script type="text/javascript" src="js/Tween.js"></script>-->
 
     <script>
+
+        function maskPhoneNumber(phoneNumber) {
+            // 截取前三位
+            let s = ""
+            for (let i = 0; i < 3; i++) {
+                s += phoneNumber[i ]
+            }
+            for (let i = 0; i < 4; i++) {
+                s += "*"
+            }
+            for (let i = 0; i < 4; i++) {
+                s += phoneNumber[i + 7]
+            }
+            return s;
+        }
+
+
         var lottery_datas = []
 
         var award_config = {
@@ -401,7 +391,7 @@
                     window.msCancelRequestAnimationFrame ||
                     clearTimeout,
                 // 初始滚动速度
-                speed = 2,
+                speed = 6,
                 // 每个对话框外部高度(包括padding与margin)
                 // 注：为了方便，这里统一设置为 132+28 = 160
                 item_outer_height = $('.lottery-list:eq(1)').outerHeight(true),
@@ -487,7 +477,7 @@
                     // 当速度达到最终的设置峰值是，isLock 将会解锁，此时，才可以停止动画
                     isLock = false;
                     clearTimeout(setout_time);
-                }, 9000);
+                }, 5000);
             }
 
             // 结束抽奖
@@ -646,7 +636,7 @@
                 canvas.height = 1300;
                 var back_img = new Image();
                 var avatar = new Image();
-                avatar.src = './img/avatar/' + name_en + '.jpg';
+                avatar.src = './img/huatu/htlogo2.jpg';
                 back_img.src = './img/award_' + award + '.' + pic_format;
                 back_img.onload = function () {
                     context.drawImage(back_img, 0, 0);

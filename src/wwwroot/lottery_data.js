@@ -1,8 +1,8 @@
 var award_config = {
     "award01": 1,
-    "award02": 3,
-    "award03": 6,
-    "award04": 20
+    "award02": 2,
+    "award03": 1,
+    "award04": 0
 };
 
 if (!localStorage.getItem('award_initial')) {
