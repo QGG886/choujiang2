@@ -20,15 +20,13 @@ app.map('/wjyssb', (req, res) => {
 })
 
 app.map("/submit", async (req, res) => {
-    if (req.cookie.submited) {
-        res.redirect('/end.html')
+    if (!req.cookie.submited) {
+        let body = await req.body()
+        let data = JSON.parse(fs.readFileSync('./src/wwwroot/data/data.json', 'utf-8'))
+        data.push(body)
+        fs.writeFileSync('./src/wwwroot/data/data.json', JSON.stringify(data))
+        res.cookie('submited', 'true')
     }
-
-    let body = await req.body()
-    let data = JSON.parse(fs.readFileSync('./src/wwwroot/data/data.json', 'utf-8'))
-    data.push(body)
-    fs.writeFileSync('./src/wwwroot/data/data.json', JSON.stringify(data))
-    res.cookie('submited', 'true')
     res.redirect('/end.html')
 })
 
