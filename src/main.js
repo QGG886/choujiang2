@@ -7,8 +7,12 @@ let app = plankton()
 app.useStaticFile()
 
 app.map('/', (req, res) => {
-    res.redirect('/submit.html')
-
+    if (req.cookie.submited) {
+        res.redirect('/end.html')
+    }
+    else {
+        res.redirect('/submit.html')
+    }
 })
 
 app.map('/wjyssb', (req, res) => {
@@ -25,9 +29,7 @@ app.map("/submit", async (req, res) => {
     data.push(body)
     fs.writeFileSync('./src/wwwroot/data/data.json', JSON.stringify(data))
     res.cookie('submited', 'true')
-    res.json({
-        msg: 'success'
-    })
+    res.redirect('/end.html')
 })
 
 app.map('/getAllUser', (req, res) => {
