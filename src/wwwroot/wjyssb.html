@@ -512,7 +512,8 @@
                 var lottery_size = $('#lottery-wrap .lottery-list').size();
                 // 随机生成停止位置的索引
                 var stop_index = Math.floor(Math.random() * (lottery_size - 4));
-                stop_index = 0
+                stop_index = Math.floor(Math.random() * 10);
+
                 // 将整个抽奖块移动到停止索引所在位置 top 值
                 var stop_top = item_outer_height * stop_index;
                 //        $('#lottery-wrap').css('top', -stop_top);
